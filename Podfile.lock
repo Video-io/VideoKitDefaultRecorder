@@ -1,0 +1,18 @@
+PODS:
+  - VideoKit/Core (1.0)
+  - VideoKit/Recorder (1.0):
+    - VideoKit/Core
+
+DEPENDENCIES:
+  - VideoKit/Recorder
+
+SPEC REPOS:
+  https://github.com/Weco/cocoapods.git:
+    - VideoKit
+
+SPEC CHECKSUMS:
+  VideoKit: 7417950aea3bd70c34fca6644c332eedc12af0ab
+
+PODFILE CHECKSUM: 1e70181094afa9035a8a697b37d72f800945eec6
+
+COCOAPODS: 1.10.0
