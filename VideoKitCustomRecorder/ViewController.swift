@@ -5,8 +5,10 @@
 //  Created by Dennis Stücken on 11/11/20.
 //
 import UIKit
+import VideoKitCore
 import VideoKitRecorder
 import AVFoundation
+import AVKit
 
 class ViewController: UIViewController {
     internal var videoURL: URL?
@@ -26,8 +28,9 @@ class ViewController: UIViewController {
     var recordingProgressView: VKRecordingProgressView = {
         let view = VKRecordingProgressView(progressViewStyle: .default)
         
-        // Set recoding time to 60 seconds max
-        view.maxTime = 60
+        // Set recoding time to 5 seconds max
+        view.maxTime = 5
+        VKRecorder.shared.videoConfiguration.maximumCaptureDuration = CMTime(value: Int64(view.maxTime), timescale: 1)
         
         return view
     }()
@@ -52,7 +55,7 @@ class ViewController: UIViewController {
                 do {
                     // Only start session if session is not already started
                     if vkRecorder.session == nil {
-                        try vkRecorder.start()
+                        try vkRecorder.startSession()
                     }
                 } catch let error {
                     print("Failed to start camera \(error)")
@@ -112,9 +115,13 @@ class ViewController: UIViewController {
         vkRecorder.previewLayer.frame = previewView.bounds
     }
     
+    fileprivate func recordingLimitReached() -> Bool {
+        guard let session = vkRecorder.session else { return false }
+        return session.totalDuration >= CMTime(value: Int64(recordingProgressView.maxTime), timescale: 1)
+    }
+    
     fileprivate func startRecording() {
         if !isRecording {
-            isRecording = true
             
             // Reset zoom factor
             vkRecorder.videoZoomFactor = 0
@@ -127,7 +134,6 @@ class ViewController: UIViewController {
     @objc func toggleRecording() {
         if isRecording {
             vkRecorder.pause()
-            isRecording = false
         } else {
             startRecording()
         }
@@ -143,14 +149,37 @@ extension ViewController: VKRecorderVideoDelegate {
     
     func vkRecorder(_ vkRecorder: VKRecorder, didAppendVideoSampleBuffer sampleBuffer: CMSampleBuffer, inSession session: VKRecorderSession) {
         let progress = Float(session.totalDuration.seconds / recordingProgressView.maxTime)
-
         recordingProgressView.setProgress(min(max(progress, 0), 1), animated: true)
     }
     
 }
 
 extension ViewController: VKRecorderDelegate {
+    func vkRecorderDidFinishUploadWhileRecording(_ video: VKVideo, _ session: VKRecorderSession) {
+        
+    }
+    
     func vkRecorderDidFinishAutoMerge(_ url: URL, _ session: VKRecorderSession) {
         print("\(session.clips.count) video clip(s) have/has been merged to \(url.absoluteString)")
+        
+        if recordingLimitReached() {
+            session.removeAllClips()
+            session.reset()
+            
+            DispatchQueue.main.async {
+                let playerVC: AVPlayerViewController = AVPlayerViewController()
+                playerVC.player = AVPlayer(playerItem: .init(url: url))
+                playerVC.player?.play()
+                self.present(playerVC, animated: true, completion: nil)
+            }
+        }
+    }
+    
+    func vkRecorder(_ vkRecorder: VKRecorder, didStartClipInSession session: VKRecorderSession) {
+        isRecording = true
+    }
+    
+    func vkRecorder(_ vkRecorder: VKRecorder, didCompleteClip clip: VKRecorderClip, inSession session: VKRecorderSession) {
+        isRecording = false
     }
 }

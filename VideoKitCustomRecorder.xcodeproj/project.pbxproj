@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,6 +14,7 @@
 		95BC8600255C6511004CB3EE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95BC85FE255C6511004CB3EE /* Main.storyboard */; };
 		95BC8602255C6513004CB3EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95BC8601255C6513004CB3EE /* Assets.xcassets */; };
 		95BC8605255C6513004CB3EE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95BC8603255C6513004CB3EE /* LaunchScreen.storyboard */; };
+		95D2FB7225C08F40005CCAC4 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 95D2FB7125C08F3C005CCAC4 /* libz.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		95BC8606255C6513004CB3EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		95BC861D255C7421004CB3EE /* VideoKitCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoKitCore.framework; path = ../VideoKitCore/Release/VideoKitCore.framework; sourceTree = "<group>"; };
 		95BC861E255C7421004CB3EE /* VideoKitRecorder.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoKitRecorder.framework; path = ../VideoKitCore/Release/VideoKitRecorder.framework; sourceTree = "<group>"; };
+		95D2FB7125C08F3C005CCAC4 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		C954F8FD6ED5B321C79CB4DA /* Pods_VideoKitCustomRecorder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VideoKitCustomRecorder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -38,6 +40,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6FF0FCE2A3F4B2EF6FC73DDD /* Pods_VideoKitCustomRecorder.framework in Frameworks */,
+				95D2FB7225C08F40005CCAC4 /* libz.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,6 +91,7 @@
 		95BC861C255C7421004CB3EE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				95D2FB7125C08F3C005CCAC4 /* libz.tbd */,
 				95BC861D255C7421004CB3EE /* VideoKitCore.framework */,
 				95BC861E255C7421004CB3EE /* VideoKitRecorder.framework */,
 				C954F8FD6ED5B321C79CB4DA /* Pods_VideoKitCustomRecorder.framework */,
@@ -106,7 +110,6 @@
 				95BC85F1255C6511004CB3EE /* Sources */,
 				95BC85F2255C6511004CB3EE /* Frameworks */,
 				95BC85F3255C6511004CB3EE /* Resources */,
-				3AE1E7242D4BD1BB34661446 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -183,23 +186,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		3AE1E7242D4BD1BB34661446 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-VideoKitCustomRecorder/Pods-VideoKitCustomRecorder-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-VideoKitCustomRecorder/Pods-VideoKitCustomRecorder-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-VideoKitCustomRecorder/Pods-VideoKitCustomRecorder-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
