@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_VideoKitCustomRecorderVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_VideoKitCustomRecorderVersionString[];
+FOUNDATION_EXPORT double Pods_VideoKitDefaultRecorderVersionNumber;
+FOUNDATION_EXPORT const unsigned char Pods_VideoKitDefaultRecorderVersionString[];
 
