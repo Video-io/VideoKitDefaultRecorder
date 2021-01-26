@@ -1,0 +1,4 @@
+framework module VideoKitRecorder {
+  header "VideoKitRecorder-Swift.h"
+  requires objc
+}
