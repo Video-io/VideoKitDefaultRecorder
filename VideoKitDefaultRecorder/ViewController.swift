@@ -37,6 +37,14 @@ extension ViewController: VKRecorderViewControllerDataSource {
 }
 
 extension ViewController: VKRecorderViewControllerDelegate {
+    func didSelectVideoFromCameraRoll(videoUrl: URL) {
+        print(#function)
+    }
+    
+    func didSelectImageFromCameraRoll(image: UIImage) {
+        print(#function)
+    }
+    
     func didSelectRecordingLength(_ recordingLength: VKRecordingLength, picker: VKHorizontalPicker) {
         print(#function + " - " + recordingLength.name)
     }
