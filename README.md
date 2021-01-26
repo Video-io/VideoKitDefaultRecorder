@@ -1,5 +1,5 @@
 # VideoKitCustomRecorder
-iOS Example on how to create a custom recorder using [video.io](https://video.io), VideoKit and VideoKit/Recorder
+iOS Example on how to create a simple video recording app for iOS using our [video.io](https://video.io) default recorder.
 
 ## Requirements
 
@@ -13,7 +13,7 @@ Install [CocoaPods](https://guides.cocoapods.org/using/getting-started.html) if 
 Clone this repository.
 
 ```bash
-git clone git@github.com:Video-io/VideoKitCustomRecorder.git
+git clone git@github.com:Video-io/VideoKitDefaultRecorder.git
 ```
 
 Install dependencies using CocoaPods
@@ -22,7 +22,7 @@ Install dependencies using CocoaPods
 pod install
 ```
 
-Open VideoKitCustomRecorder.xcworkspace
+Open VideoKitDefaultRecorder.xcworkspace
 
 ```bash
-open VideoKitCustomRecorder.xcworkspace
+open VideoKitDefaultRecorder.xcworkspace
