@@ -91,6 +91,30 @@ extension ViewController: VKRecorderViewControllerDelegate {
     
     func didExit(_ recorder: VKRecorder, recordingViewController: VKRecorderViewController) {
         print(#function)
+        
+        recorder.previewLayer.removeFromSuperlayer()
+        recorder.endSession()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            // Restarting App to simulate exit
+            let viewController = ViewController()
+            let navCtrl = UINavigationController(rootViewController: viewController)
+
+            guard
+                    let window = UIApplication.shared.keyWindow,
+                    let rootViewController = window.rootViewController
+                    else {
+                return
+            }
+
+            navCtrl.view.frame = rootViewController.view.frame
+            navCtrl.view.layoutIfNeeded()
+
+            UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: {
+                window.rootViewController = navCtrl
+            })
+        }
+        
     }
     
     func exitMenuDidTapStartOver(_ recorder: VKRecorder) {
