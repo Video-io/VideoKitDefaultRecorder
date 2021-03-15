@@ -29,6 +29,13 @@ extension ViewController: VKRecorderViewControllerDataSource {
     
     func didFinishMergingClips(_ recorder: VKRecorder, mergedClipUrl: URL, autoMerged: Bool) {
         print("Clips successfully merged into video file " + mergedClipUrl.absoluteString)
+        
+        DispatchQueue.main.async {
+            let playerVC: AVPlayerViewController = AVPlayerViewController()
+            playerVC.player = AVPlayer(playerItem: .init(url: mergedClipUrl))
+            playerVC.player?.play()
+            self.present(playerVC, animated: true, completion: nil)
+        }
     }
     
     func didFailMergingClips(_ recorder: VKRecorder, error: Error, autoMerged: Bool) {
